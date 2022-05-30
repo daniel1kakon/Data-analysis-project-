@@ -1,0 +1,51 @@
+?plot
+library(readr)
+library(tidyverse)
+library(corrplot)
+
+mydata <- read_csv("/Users/danielkakon/Desktop/projectR/RRR2.csv", col_types = cols('Accidents'= col_number(),'Drivingexperience'= col_number(),'Age'= col_number(),'Vehicleyear'= col_number(),'hourssleep'= col_number()))
+summary(mydata)
+
+plot(mydata$Drivingexperience, mydata$Accidents ,
+     xlab = 'Drivingexperience' , ylab = 'Accidents', xlim = c(0,60),ylim = c(0,13))
+
+  plot(mydata$Age, mydata$Accidents ,
+       xlab = 'Age' , ylab = 'Accidents', xlim = c(0,70),ylim = c(0,13))
+  
+  
+  plot(mydata$Vehicleyear, mydata$Accidents ,
+       xlab = 'Vehicleyear' , ylab = 'Accidents', xlim = c(2000,2021),ylim = c(0,13))
+
+
+corrplot(cor(mydata),method = "number")
+
+linearmode1 <- lm(formula = mydata[['Accidents']] ~ mydata[['Gender']]+mydata[['Age']]+mydata[['hourssleep']]+mydata[['Drivingexperience']]+mydata[['Vehicleyear']])
+summary(linearmode1)
+
+anova(linearmode1)
+
+qqnorm(linearmode1$residuals , pch = 1, frame = FALSE )
+qqline(linearmode1$residuals, col = 'dark green', lwd = 1.7)
+
+ ks.test(x = linearmode1$residuals , y = "pnorm" , alternative =  "two.sided" , exact = NULL)
+ 
+ 
+ linearmode2 <- lm(formula = mydata[['Accidents']] ~ mydata[['Gender']])
+ summary(linearmode2)
+ 
+ anova(linearmode2)
+ 
+ 
+ library(tidyverse)
+ mydata <- read_csv("/Users/danielkakon/Desktop/projectR/RRR2.csv", col_types = cols('Accidents'= col_number(),'Drivingexperience'= col_number(),'Age'= col_number(),'Vehicleyear'= col_number(),'hourssleep'= col_number()))
+ summary(mydata)
+ 
+ 
+ 
+ 
+
+ 
+ 
+
+
+  
