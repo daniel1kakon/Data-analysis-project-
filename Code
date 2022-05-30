@@ -36,9 +36,7 @@ qqline(linearmode1$residuals, col = 'dark green', lwd = 1.7)
  anova(linearmode2)
  
  
- library(tidyverse)
- mydata <- read_csv("/Users/danielkakon/Desktop/projectR/RRR2.csv", col_types = cols('Accidents'= col_number(),'Drivingexperience'= col_number(),'Age'= col_number(),'Vehicleyear'= col_number(),'hourssleep'= col_number()))
- summary(mydata)
+
  
  
  
